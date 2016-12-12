@@ -6,9 +6,9 @@ import org.apache.spark.api.java.JavaSparkContext;
 public class PomMain {
 	public static void main(String[] args) {
 		
-		SparkConf conf = new SparkConf().setAppName("PompuApp").set("spark.executor.memory", "16g");
+		//SparkConf conf = new SparkConf().setAppName("PompuApp").set("spark.executor.memory", "16g");
 		
-		//SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local");
+		SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
        
 		AdrouterData adr=new AdrouterData();
