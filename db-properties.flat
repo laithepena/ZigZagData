@@ -1,0 +1,5 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbcUrl=jdbc:mysql://qa-us1-dhub20.blackarrow-corp.com:3306/blackarrow_dh_qa17?user=qa17&password=qa17
+logFile_location_adr =hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//user/datahub/profiles/qa17/in/audit_files/processed/20161025233651597/20001_1_1475885621291_ba_audit_adrouter.log.gz
+logFile_location_feed =hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//user/datahub/profiles/qa17/in/audit_files/processed/20161025233651597/20001_*_*_ba_audit_feedback.log.gz
+spark_master_url=spark://qa-us1-dhub20.blackarrow-corp.com:8088/cluster
