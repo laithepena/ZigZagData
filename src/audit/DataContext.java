@@ -34,7 +34,7 @@ public class DataContext {
 	}
 
 	
-	// ##############  For Adrouter DataConfig Starts ##########################/////////////////////////////////////
+	// ##############  For Adrouter/FeedBack DataConfig Starts ##########################/////////////////////////////////////
 	void setDataConfig(JavaSparkContext sc, String AuditType){
 
 		colProp = new Properties();
@@ -83,13 +83,13 @@ public class DataContext {
 		
 	}
 
-	// ##############  For Adrouter DataConfig  ENDS  ##########################/////////////////////////////////////
+	// ##############  For Adrouter/FeedBack DataConfig  ENDS  ##########################/////////////////////////////////////
 	
-	// ##############  For Adrouter Strategy Starts ##########################/////////////////////////////////////
+	// ##############  For Adrouter/FeedBack Strategy Starts ##########################/////////////////////////////////////
 	void executeDataStrategy(JavaSparkContext sc,String tableName){
 		
 	    sqlContext = new SQLContext(sc);
-		DF1=dataStrategy.funcAuditParsing(rdd,sqlContext,colProp );
+		DF1=dataStrategy.funcAuditParsing(rdd,sqlContext,colProp ); /// Call to the PARSING FUNC
 		
 		System.out.println("POMPU --- XYZ ");
 				
@@ -108,7 +108,7 @@ public class DataContext {
 		
 	}
 	
-	// ##############  For Adrouter Strategy ENDS ##########################/////////////////////////////////////
+	// ##############  For Adrouter/FeedBack Strategy ENDS ##########################/////////////////////////////////////
 
 	public DataStrategyInterface getDataStrategy() {
 		return dataStrategy;
