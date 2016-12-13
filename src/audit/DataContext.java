@@ -83,7 +83,7 @@ public class DataContext {
 	
 		
 	
-		//System.out.println("DF1  COUNT ---- "+DF1.count());
+		System.out.println(" ASSAM -- DF1  COUNT ---- "+DF1.count());
 		DF1.write().mode(SaveMode.Overwrite).jdbc(jdbcUrl, tableName,dbProperties);
 		// jdbc(jdbcUrl, "stg_twc_adr", dbProperties);
 		//DF1.write().mode(SaveMode.Overwrite).
