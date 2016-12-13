@@ -1,7 +1,14 @@
 package audit;
 
 import org.apache.spark.SparkConf;
+
 import org.apache.spark.api.java.JavaSparkContext;
+
+//#########################################To RUN ####################################################################################
+//    Generate a JAR file and copy it over to the ENV Box
+//     
+//
+//#############################################################################################################################
 
 public class PomMain {
 	public static void main(String[] args) {
@@ -10,7 +17,7 @@ public class PomMain {
 		
 		//SparkConf conf = new SparkConf().setAppName("PompuApp").set("spark.executor.memory", "16g"); // need to deComment this one for Cluster Mode
 		
-		SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local");
+		SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local"); // this is for local mode when running from eclipse
         JavaSparkContext sc = new JavaSparkContext(conf);
         
         
