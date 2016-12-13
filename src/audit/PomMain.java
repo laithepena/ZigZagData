@@ -18,12 +18,12 @@ public class PomMain {
 		D1.executeDataStrategy(sc, "stg_adr");
 		
 	
-		// ----------------------------------------------------------
-		/*FeedbackData feed=new FeedbackData();
+//############ FeedBack ##################################################################################################
+	FeedbackData feed=new FeedbackData();
 		
 		DataContext D2=new DataContext(feed);
 		D2.setDataConfig(sc, "logFile_location_feed");
-		D2.executeDataStrategy(sc,"stg_feedback");*/
+		D2.executeDataStrategy(sc,"stg_feedback");
 		
 		System.out.println("............DONE DONE DONE.................");
 	}

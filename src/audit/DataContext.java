@@ -33,6 +33,8 @@ public class DataContext {
 		this.dataStrategy=dataStrategy;
 	}
 
+	
+	// ##############  For Adrouter DataConfig Starts ##########################/////////////////////////////////////
 	void setDataConfig(JavaSparkContext sc, String AuditType){
 
 		colProp = new Properties();
@@ -47,8 +49,17 @@ public class DataContext {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//############################################################
+		if(AuditType.equals("adr")){
 		System.out.println(colProp.getProperty("adr_col1"));
 		System.out.println(colProp.getProperty("adr_col12"));
+		}
+		else if(AuditType.equals("feed")){
+			System.out.println(colProp.getProperty("feed_col1"));
+			System.out.println(colProp.getProperty("feed_col12"));
+		}
+		//############################################################
 		 dbProperties = new Properties();
 		try {
 			dbProperties.load(new FileInputStream(new File("db-properties.flat")));
@@ -72,6 +83,9 @@ public class DataContext {
 		
 	}
 
+	// ##############  For Adrouter DataConfig  ENDS  ##########################/////////////////////////////////////
+	
+	// ##############  For Adrouter Strategy Starts ##########################/////////////////////////////////////
 	void executeDataStrategy(JavaSparkContext sc,String tableName){
 		
 	    sqlContext = new SQLContext(sc);
@@ -84,13 +98,17 @@ public class DataContext {
 		
 	
 		System.out.println(" ASSAM -- DF1  COUNT ---- "+DF1.count());
-		DF1.write().mode(SaveMode.Overwrite).jdbc(jdbcUrl, tableName,dbProperties);
+		//DF1.write().mode(SaveMode.Overwrite).jdbc(jdbcUrl, tableName,dbProperties);
+		
+		DF1.write().mode(SaveMode.Append).jdbc(jdbcUrl, tableName,dbProperties);
 		// jdbc(jdbcUrl, "stg_twc_adr", dbProperties);
 		//DF1.write().mode(SaveMode.Overwrite).
 		
 		DF1.count();
 		
 	}
+	
+	// ##############  For Adrouter Strategy ENDS ##########################/////////////////////////////////////
 
 	public DataStrategyInterface getDataStrategy() {
 		return dataStrategy;
