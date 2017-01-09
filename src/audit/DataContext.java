@@ -4,31 +4,31 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SaveMode;
+
+import scala.Tuple2;
 
 public class DataContext {
 	//private String filename;
 	private DataStrategyInterface  dataStrategy;
-	private JavaRDD rdd; 
+	private JavaRDD<?> rdd; 
+	private JavaPairRDD<String, String> pairRDD;
+	private List<Tuple2<String, String>> listPairRDD;
 	private Properties colProp; 
-	private JavaRDD<Row> R1;
 	private DataFrame DF1;
 	private SQLContext sqlContext;
 	private String jdbcUrl;
 	private FileInputStream input;
 	private Properties dbProperties;
 	
-	private String dbUser;
-	private String dbPassword;
-	//SQLContext sqlContext;
-
 	DataContext(DataStrategyInterface  dataStrategy){
 		this.dataStrategy=dataStrategy;
 	}
@@ -74,6 +74,10 @@ public class DataContext {
 
 		rdd = sc.textFile(dbProperties.getProperty(AuditType), 10);
 		
+	//	 JavaPairRDD<String, String> pairRDD=  sc.wholeTextFiles("hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//user/datahub/profiles/qa17/in/audit_files/processed/20161121220420390/20001_*_*_ba_audit_*.log.gz");
+		    
+		 pairRDD=sc.wholeTextFiles(dbProperties.getProperty(AuditType));
+		
 		jdbcUrl = dbProperties.getProperty("jdbcUrl");
 		/*dbUser= dbProperties.getProperty(dbUser);
 		dbPassword=dbProperties.getProperty(dbPassword);*/
@@ -88,8 +92,14 @@ public class DataContext {
 	// ##############  For Adrouter/FeedBack Strategy Starts ##########################/////////////////////////////////////
 	void executeDataStrategy(JavaSparkContext sc,String tableName){
 		
-	    sqlContext = new SQLContext(sc);
-		DF1=dataStrategy.funcAuditParsing(rdd,sqlContext,colProp ); /// Call to the PARSING FUNC
+		listPairRDD = pairRDD.collect();
+		
+		
+		
+		sqlContext = new SQLContext(sc);
+	    
+	    
+		DF1=dataStrategy.funcAuditParsing(rdd,listPairRDD,sqlContext,colProp ); /// Call to the PARSING FUNC
 		
 		System.out.println("POMPU --- XYZ ");
 				

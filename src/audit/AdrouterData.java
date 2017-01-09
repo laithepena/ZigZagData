@@ -2,9 +2,9 @@ package audit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
-import org.apache.derby.impl.sql.catalog.SYSROUTINEPERMSRowFactory;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
@@ -15,21 +15,23 @@ import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 
+import scala.Tuple2;
+
 public class AdrouterData extends Utilities implements DataStrategyInterface  {
+	
+	
 
 	@Override
-	public DataFrame funcAuditParsing(JavaRDD<?> lines,SQLContext sqlContext, Properties colProp) {
+	public DataFrame funcAuditParsing(JavaRDD<?> lines,  List<Tuple2<String, String>> listPairRDD ,SQLContext sqlContext, Properties colProp) {
         System.out.println("............. getRowsFromAdrAudits...........");
         
+        final int rows=33; // ################### no of rows
         
-        
-        JavaRDD l2 = lines.flatMap(s -> {
+        JavaRDD<Row> l2 = lines.flatMap(s -> {
             HashMap<Integer, String> OneRowMap = new HashMap<Integer, String>();
             HashMap<Integer, String> hMap = new HashMap<Integer, String>();
             HashMap<Integer, String> rowMap = new HashMap<Integer, String>();
-            ArrayList<Row> lRow = new ArrayList<Row>();
-            
-            ArrayList<DataFrame> lFrame = new ArrayList<DataFrame>();
+           ArrayList<Row> lRow = new ArrayList<Row>();
             
             String[] arr1 = ((String) s).split("\\^");
             int count = 0;
@@ -88,7 +90,7 @@ public class AdrouterData extends Utilities implements DataStrategyInterface  {
             String[] rpair = null;
             int lcount = 0;
             while (lcount < OneRowMap.size()) {
-                Object[] rowArray = new Object[23];
+                Object[] rowArray = new Object[rows]; // ########################## no of columns ##################
                 HashMap<String, String> rowMap2 = new HashMap<String, String>();
                 System.out.println(" ====================  CATCH ========rpair =====  " + OneRowMap);
                 rpair = ((String)OneRowMap.get(lcount)).split(",");
@@ -106,33 +108,61 @@ public class AdrouterData extends Utilities implements DataStrategyInterface  {
                     }
                     rowMap2.put(val[0], val[1]);
                     String[] arr11 = null;
-                    HashMap aCreat = new HashMap();
-                    if (val[0].equals("EVENTTIME")) {
+                    if (val[0].equals("EVENTTIME-CHANGED")) {
                         u = new Utilities();
                         ret = u.getLocalDateID(val[1], "America/New_York");
                         rowMap2.put("EVENTTIME_EST", ret);
                     }
-                    if (val[0].equals("LOGTIME")) {
+                    if (val[0].equals("LOGTIME-CHANGED")) {
                         u = new Utilities();
                         ret = u.getLocalDateID(val[1], "America/Los_Angeles");
                         rowMap2.put("LOGTIME_PST", ret);
                     }
-                    if (val[0].equals("ASSETINFO")) {
+                    if (val[0].equals("ASSETINFO-CHANGED")) {
                         arr11 = val[1].split(":");
                         int j1 = 0;
                         while (j1 < arr11.length) {
-                            if (arr11[j1].equals("ASSETID")) {
-                                rowMap2.put("ASSETID_Cr", arr11[j1 + 1]);
+                            if (arr11[j1].equals("ASSETID-CHANGED")) {
+                                rowMap2.put("ASSETID_Cr-CHANGED", arr11[j1 + 1]);
                             }
-                            if (arr11[j1].equals("DATABASEID")) {
-                                rowMap2.put("DATABASEID_Cr", arr11[j1 + 1]);
+                            if (arr11[j1].equals("DATABASEID-CHANGED")) {
+                                rowMap2.put("DATABASEID_Cr-CHANGED", arr11[j1 + 1]);
                             }
-                            if (arr11[j1].equals("NAME")) {
-                                rowMap2.put("NAME_Cr", arr11[j1 + 1]);
+                            if (arr11[j1].equals("NAME-CHANGED")) {
+                                rowMap2.put("NAME_Cr-CHANGED", arr11[j1 + 1]);
                             }
                             ++j1;
                         }
                     }
+                    
+                    
+                    if(val[0].equals("PROGRAMPOSITION-CHANGED")){
+                    	if(val[1].equals("37")){
+                    		rowMap2.put("PROGRAMPOSITION-CHANGED", "Pre");
+                    	}
+                    	else if(val[1].equals("38")){
+                    		rowMap2.put("PROGRAMPOSITION-CHANGED", "Mid");
+                    	}
+                    	else if(val[1].equals("39")){
+                    		rowMap2.put("PROGRAMPOSITION-CHANGED", "Post");
+                    	}
+                    	
+                    }
+                    
+                    if(val[0].equals("PRMSGREF-CHANGED")){
+                    for(int i=0;i<listPairRDD.size();i++){
+                  	  if(listPairRDD.get(i)._2.contains(val[1]))
+                  	  {
+                  		  //System.out.println(listPairRDD.get(i)._1);
+                  		  
+                  		//listPairRDD.get(i)._1;
+                  		String arr[]=listPairRDD.get(i)._1.split("/");
+                  		rowMap2.put("LOG_FILE_NAME",arr[11]);
+                  	  }
+                  	  }
+                    }
+                    
+                    
                     rowArray[0] = rowMap2.get(colProp.getProperty("adr_col1"));
                     rowArray[1] = rowMap2.get(colProp.getProperty("adr_col2"));
                     rowArray[2] = rowMap2.get(colProp.getProperty("adr_col3"));
@@ -156,17 +186,29 @@ public class AdrouterData extends Utilities implements DataStrategyInterface  {
                     rowArray[20] = rowMap2.get(colProp.getProperty("adr_col21"));
                     rowArray[21] = rowMap2.get(colProp.getProperty("adr_col22"));
                     rowArray[22] = rowMap2.get(colProp.getProperty("adr_col23"));
+                    rowArray[23] = rowMap2.get(colProp.getProperty("adr_col24"));
+                    rowArray[24] = rowMap2.get(colProp.getProperty("adr_col25"));
+                    rowArray[25] = rowMap2.get(colProp.getProperty("adr_col26"));
+                    rowArray[26] = rowMap2.get(colProp.getProperty("adr_col27"));
+                    rowArray[27] = rowMap2.get(colProp.getProperty("adr_col28"));  
+                    
+                    rowArray[28] = rowMap2.get(colProp.getProperty("adr_col29"));
+                    rowArray[29] = rowMap2.get(colProp.getProperty("adr_col30"));
+                    rowArray[30] = rowMap2.get(colProp.getProperty("adr_col31"));
+                    rowArray[31] = rowMap2.get(colProp.getProperty("adr_col32"));
+                    rowArray[32] = rowMap2.get(colProp.getProperty("adr_col33"));
+                    
                     long l = System.currentTimeMillis();
                     String ss = Long.toString(l);
                     System.out.println("POMPU 007 " + ss);
                     Utilities u1 = new Utilities();
                     String dateUpdated_pst = u1.getLocalDateID_All(ss, "America/Los_Angeles");
-                    rowArray[22] = dateUpdated_pst;
-                    ++last;
+                    rowArray[32] = dateUpdated_pst;
+                    last++;
                 }
                 Row aRow = RowFactory.create((Object[])rowArray);
                 lRow.add(aRow);
-                ++lcount;
+                lcount++;
             }
             
            // System.out.println("ASSAM --- "+lRow);
@@ -185,40 +227,15 @@ public class AdrouterData extends Utilities implements DataStrategyInterface  {
         
        
         
-        //System.out.println("JJ COLLECT   "+jj.collect());
-        
-       // System.out.println("JJ COUNT  "+jj.count());
-        
-        //DataFrame df1;
-       /* System.out.println("COUNT "+l2.count());
-        return l2;*/
         System.out.println(".........inside....getDataFrameFromAdrouterRows.......");
         ArrayList<StructField> fields = new ArrayList<StructField>();
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col1"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col2"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col3"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col4"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col5"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col6"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col7"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col8"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col9"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col10"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col11"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col12"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col13"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col14"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col15"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col16"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col17"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col18"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col19"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col20"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col21"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col22"), (DataType)DataTypes.StringType, (boolean)true));
-        fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col23"), (DataType)DataTypes.StringType, (boolean)true));
+              
+        for(int s2=1;s2<=rows;s2++){
+        	fields.add(DataTypes.createStructField((String)colProp.getProperty("adr_col"+s2), (DataType)DataTypes.StringType, (boolean)true));
+        }
+        
         StructType schema = DataTypes.createStructType(fields);
-        DataFrame df1 = sqlContext.createDataFrame(jj, schema);
+        DataFrame df1 = sqlContext.createDataFrame(jj, schema); // DATAFRAME Generated ###################################
         
       // df1.show();
 	     

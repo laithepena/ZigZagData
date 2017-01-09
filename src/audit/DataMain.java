@@ -10,7 +10,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 //
 //#############################################################################################################################
 
-public class PomMain {
+public class DataMain {
 	public static void main(String[] args) {
 		
 //  SparkConf is common to the whole program - so there is only one conf
@@ -19,14 +19,14 @@ public class PomMain {
 		
 		SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local"); // this is for local mode when running from eclipse
         JavaSparkContext sc = new JavaSparkContext(conf);
-        
-        
+                
  //############ Adrouter ##################################################################################################	  
 		AdrouterData adr=new AdrouterData();
 			
 		DataContext D1=new DataContext(adr);
 		D1.setDataConfig(sc,"logFile_location_adr");
 		D1.executeDataStrategy(sc, "stg_adr");
+		
 		
 	
 //############ FeedBack ###################################################################################################
