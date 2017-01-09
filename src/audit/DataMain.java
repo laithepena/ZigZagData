@@ -25,7 +25,7 @@ public class DataMain {
 			
 		DataContext D1=new DataContext(adr);
 		D1.setDataConfig(sc,"logFile_location_adr");
-		D1.executeDataStrategy(sc, "stg_adr");
+		D1.executeDataStrategy(sc, "stg_adr-CHANGED");
 		
 		
 	
@@ -34,7 +34,7 @@ public class DataMain {
 		
 		DataContext D2=new DataContext(feed);
 		D2.setDataConfig(sc, "logFile_location_feed");
-		D2.executeDataStrategy(sc,"stg_feedback");
+		D2.executeDataStrategy(sc,"stg_feedback-CHANGED");
 		
 		System.out.println("............DONE DONE DONE......HAVE A GOOD DAY......DONE DONE DONE.....");
 	}
