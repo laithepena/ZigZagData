@@ -12,6 +12,7 @@ import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SaveMode;
 
 import scala.Tuple2;
 
@@ -23,12 +24,16 @@ public class Example {
 		SparkConf conf = new SparkConf().setAppName("PompuApp").setMaster("local"); // this is for local mode when running from eclipse
         JavaSparkContext sc = new JavaSparkContext(conf);
         
+        SQLContext sql = new SQLContext(sc);
+        
         JavaPairRDD<String, String> rdd=  sc.wholeTextFiles("hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//user/datahub/profiles/qa17/in/audit_files/processed/20161121220420390/20001_*_*_ba_audit_*.log.gz");
        System.out.println(rdd.keys().count());
        
       JavaRDD<String> rdd2= sc.textFile("hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//user/datahub/profiles/qa17/in/audit_files/processed/20161121220420390/20001_*_*_ba_audit_*.log.gz");
        
       //for(int i=0;i<rdd.keys().count();i++){
+      
+    
     	  
     	  System.out.println(rdd.keys()+  "  POMPU  " + rdd.values());
     	  
@@ -64,8 +69,12 @@ public class Example {
     
     	  }
     	  //System.out.println(pairs.get(1)._2.contains("014Pdd3HYkTjGzyEp-AFyP"));
-    	  
-       
+    	  DataFrame DF1;
+    	  DF1=sql.read().parquet("hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//tmp/test1.parquet");
+    	 // DF1.write().mode(SaveMode.Append).parquet("hdfs://qa-us1-dhub20.blackarrow-corp.com:8020//tmp/test1.parquet");
+    		DF1.printSchema();
+    		DF1.show();
+    		
     	 // List<List<String, String>> pairs = rdd.collect();
         
 	}

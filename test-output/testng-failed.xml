@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="dbTests.Test_Logs_With_DH">
+        <methods>
+          <include name="Verify_EventTypeCount_between_stg_feedback_and_stg_event"/>
+          <include name="Verify_ActualImpressions_between_AuditLogs_and_stg_event"/>
+          <include name="Verify_EventTypeCount_between_stg_adrouter_and_stg_event"/>
+          <include name="Verify_Decisions_between_AuditLogs_and_stg_event"/>
+          <include name="afterClass"/>
+          <include name="Verify_EventTypeCount_between_TABLE_FEED_and_stg_event"/>
+          <include name="beforeClass"/>
+          <include name="Verify_EventTypeCount_between_TABLE_ADR_and_stg_event"/>
+        </methods>
+      </class> <!-- dbTests.Test_Logs_With_DH -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

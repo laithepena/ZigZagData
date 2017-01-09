@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class Utilities {
-    public String getLocalDateID(String x, String timeZoneEventTime) {
+    public static String getLocalDateID(String x, String timeZoneEventTime) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         formatter.setTimeZone(TimeZone.getTimeZone(timeZoneEventTime));
         long milliseconds = Long.parseLong(x);
@@ -15,7 +15,7 @@ public class Utilities {
         return ss;
     }
 
-    public String getLocalDateID_All(String x, String timeZoneEventTime) {
+    public static String getLocalDateID_All(String x, String timeZoneEventTime) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HH-mm-ss");
         formatter.setTimeZone(TimeZone.getTimeZone(timeZoneEventTime));
         long milliseconds = Long.parseLong(x);

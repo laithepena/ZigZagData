@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="6" ignored="0" total="6" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="254361" started-at="2017-04-08T00:10:32Z" finished-at="2017-04-08T00:14:47Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="254361" started-at="2017-04-08T00:10:32Z" finished-at="2017-04-08T00:14:47Z">
+      <class name="dbTests.Test_Logs_With_DH">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="beforeClass" is-config="true" duration-ms="121780" started-at="2017-04-07T17:10:32Z" finished-at="2017-04-07T17:12:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="FAIL" signature="Verify_ActualImpressions_between_AuditLogs_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_ActualImpressions_between_AuditLogs_and_stg_event" duration-ms="76337" started-at="2017-04-07T17:12:34Z" finished-at="2017-04-07T17:13:50Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_ActualImpressions_between_AuditLogs_and_stg_event(Test_Logs_With_DH.java:166)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_ActualImpressions_between_AuditLogs_and_stg_event -->
+        <test-method status="FAIL" signature="Verify_Decisions_between_AuditLogs_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_Decisions_between_AuditLogs_and_stg_event" duration-ms="27340" started-at="2017-04-07T17:13:50Z" finished-at="2017-04-07T17:14:18Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_Decisions_between_AuditLogs_and_stg_event(Test_Logs_With_DH.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_Decisions_between_AuditLogs_and_stg_event -->
+        <test-method status="FAIL" signature="Verify_EventTypeCount_between_TABLE_ADR_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_EventTypeCount_between_TABLE_ADR_and_stg_event" duration-ms="23882" started-at="2017-04-07T17:14:18Z" finished-at="2017-04-07T17:14:42Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_EventTypeCount_between_TABLE_ADR_and_stg_event(Test_Logs_With_DH.java:218)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_EventTypeCount_between_TABLE_ADR_and_stg_event -->
+        <test-method status="FAIL" signature="Verify_EventTypeCount_between_TABLE_FEED_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_EventTypeCount_between_TABLE_FEED_and_stg_event" duration-ms="473" started-at="2017-04-07T17:14:42Z" finished-at="2017-04-07T17:14:42Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_EventTypeCount_between_TABLE_FEED_and_stg_event(Test_Logs_With_DH.java:229)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_EventTypeCount_between_TABLE_FEED_and_stg_event -->
+        <test-method status="FAIL" signature="Verify_EventTypeCount_between_stg_adrouter_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_EventTypeCount_between_stg_adrouter_and_stg_event" duration-ms="1397" started-at="2017-04-07T17:14:42Z" finished-at="2017-04-07T17:14:44Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_EventTypeCount_between_stg_adrouter_and_stg_event(Test_Logs_With_DH.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_EventTypeCount_between_stg_adrouter_and_stg_event -->
+        <test-method status="FAIL" signature="Verify_EventTypeCount_between_stg_feedback_and_stg_event()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="Verify_EventTypeCount_between_stg_feedback_and_stg_event" duration-ms="1258" started-at="2017-04-07T17:14:44Z" finished-at="2017-04-07T17:14:45Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: assertion failed: No predefined schema found, and no Parquet data files or summary files found under hdfs://qa-us1-dhub20.blackarrow-corp.com:8020/user/datahub/pdbms/qa_us1_app20_dw.db/stg_event/batch_id=20170408000912926.
+	at scala.Predef$.assert(Predef.scala:179)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$MetadataCache$$readSchema(ParquetRelation.scala:478)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache$$anonfun$13.apply(ParquetRelation.scala:404)
+	at scala.Option.orElse(Option.scala:257)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$MetadataCache.refresh(ParquetRelation.scala:404)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache$lzycompute(ParquetRelation.scala:145)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.org$apache$spark$sql$execution$datasources$parquet$ParquetRelation$$metadataCache(ParquetRelation.scala:143)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation$$anonfun$6.apply(ParquetRelation.scala:196)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetRelation.dataSchema(ParquetRelation.scala:196)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema$lzycompute(interfaces.scala:561)
+	at org.apache.spark.sql.sources.HadoopFsRelation.schema(interfaces.scala:560)
+	at org.apache.spark.sql.execution.datasources.LogicalRelation.<init>(LogicalRelation.scala:31)
+	at org.apache.spark.sql.SQLContext.baseRelationToDataFrame(SQLContext.scala:395)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:267)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:256)
+	at dbTests.DBOperations.generateDataHubDataFrame(DBOperations.java:57)
+	at dbTests.Test_Logs_With_DH.Verify_EventTypeCount_between_stg_feedback_and_stg_event(Test_Logs_With_DH.java:207)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_EventTypeCount_between_stg_feedback_and_stg_event -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:dbTests.Test_Logs_With_DH@178f375]" name="afterClass" is-config="true" duration-ms="1850" started-at="2017-04-07T17:14:45Z" finished-at="2017-04-07T17:14:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- dbTests.Test_Logs_With_DH -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

@@ -1,0 +1,8 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+
+name_node=qa-us1-dhub20.blackarrow-corp.com
+spark_master_url=spark://qa-us1-dhub20.blackarrow-corp.com:8088/cluster
+PROFILE=qa_us1_app20
+batch_id=20170408000912926
+# put YES/NO for the below one - yes means it will save the adrouter/feedback Logs as Tables after parsing
+SaveAuditLogTable=YES
